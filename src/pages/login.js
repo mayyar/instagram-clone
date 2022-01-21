@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FirebaseContext from '../context/firebase';
 
-const login = () => {
+const Login = () => {
   const history = useNavigate();
   const { firebase } = useContext(FirebaseContext);
 
@@ -19,8 +19,10 @@ const login = () => {
   }, []);
 
   return (
-    <p>I am the login page</p>
+    <div className="container flex mx-auto max-w-screen-md items-center h-screen">
+      <p>I have no idea!</p>
+    </div>
   );
 };
 
-export default login;
+export default Login;
