@@ -3,13 +3,13 @@
 const seedDatabase = (firebase) => {
   const users = [
     {
-      userId: 'kl6xInDLaZQqEQ9p7WDcjd1sH0B2',
+      userId: '8P2QuDIFJphJntq8TXa3DpB2ME53',
       username: 'jim',
       fullName: 'Jim Lu',
       emailAddress: 's6111302@gmail.com',
       following: ['2'],
       followers: ['2', '3', '4'],
-      dateCreated: Date.now()
+      dateCreated: Date.now(),
     },
     {
       userId: '2',
@@ -17,8 +17,8 @@ const seedDatabase = (firebase) => {
       fullName: 'Raffaello Sanzio da Urbino',
       emailAddress: 'raphael@sanzio.com',
       following: [],
-      followers: ['kl6xInDLaZQqEQ9p7WDcjd1sH0B2'],
-      dateCreated: Date.now()
+      followers: ['8P2QuDIFJphJntq8TXa3DpB2ME53'],
+      dateCreated: Date.now(),
     },
     {
       userId: '3',
@@ -26,8 +26,8 @@ const seedDatabase = (firebase) => {
       fullName: 'Salvador Dalí',
       emailAddress: 'salvador@dali.com',
       following: [],
-      followers: ['kl6xInDLaZQqEQ9p7WDcjd1sH0B2'],
-      dateCreated: Date.now()
+      followers: ['8P2QuDIFJphJntq8TXa3DpB2ME53'],
+      dateCreated: Date.now(),
     },
     {
       userId: '4',
@@ -35,9 +35,9 @@ const seedDatabase = (firebase) => {
       fullName: 'George Orwell',
       emailAddress: 'george@orwell.com',
       following: [],
-      followers: ['kl6xInDLaZQqEQ9p7WDcjd1sH0B2'],
-      dateCreated: Date.now()
-    }
+      followers: ['8P2QuDIFJphJntq8TXa3DpB2ME53'],
+      dateCreated: Date.now(),
+    },
   ];
 
   // eslint-disable-next-line prefer-const
@@ -59,16 +59,16 @@ const seedDatabase = (firebase) => {
         comments: [
           {
             displayName: 'dali',
-            comment: 'Love this place, looks like my animal farm!'
+            comment: 'Love this place, looks like my animal farm!',
           },
           {
             displayName: 'orwell',
-            comment: 'Would you mind if I used this picture?'
-          }
+            comment: 'Would you mind if I used this picture?',
+          },
         ],
         userLatitude: '40.7128°',
         userLongitude: '74.0060°',
-        dateCreated: Date.now()
+        dateCreated: Date.now(),
       });
   }
 };
