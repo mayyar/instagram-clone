@@ -3,10 +3,10 @@
 const seedDatabase = (firebase) => {
   const users = [
     {
-      userId: '8P2QuDIFJphJntq8TXa3DpB2ME53',
+      userId: 'vYfCeY3yaYQ7itVczLXLNZcyVWv2',
       username: 'jim',
       fullName: 'Jim Lu',
-      emailAddress: 's6111302@gmail.com',
+      emailAddress: 'jimlu@gmail.com',
       following: ['2'],
       followers: ['2', '3', '4'],
       dateCreated: Date.now(),
@@ -17,7 +17,7 @@ const seedDatabase = (firebase) => {
       fullName: 'Raffaello Sanzio da Urbino',
       emailAddress: 'raphael@sanzio.com',
       following: [],
-      followers: ['8P2QuDIFJphJntq8TXa3DpB2ME53'],
+      followers: ['vYfCeY3yaYQ7itVczLXLNZcyVWv2'],
       dateCreated: Date.now(),
     },
     {
@@ -26,7 +26,7 @@ const seedDatabase = (firebase) => {
       fullName: 'Salvador Dalí',
       emailAddress: 'salvador@dali.com',
       following: [],
-      followers: ['8P2QuDIFJphJntq8TXa3DpB2ME53'],
+      followers: ['vYfCeY3yaYQ7itVczLXLNZcyVWv2'],
       dateCreated: Date.now(),
     },
     {
@@ -35,7 +35,7 @@ const seedDatabase = (firebase) => {
       fullName: 'George Orwell',
       emailAddress: 'george@orwell.com',
       following: [],
-      followers: ['8P2QuDIFJphJntq8TXa3DpB2ME53'],
+      followers: ['vYfCeY3yaYQ7itVczLXLNZcyVWv2'],
       dateCreated: Date.now(),
     },
   ];
