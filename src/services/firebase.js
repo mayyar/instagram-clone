@@ -38,4 +38,42 @@ const getSuggestedProfiles = async (userId, following) => {
     );
 };
 
-export { doesUsernameExist, getUserByUserId, getSuggestedProfiles };
+const updateLoggedInUserFollowing = async (
+  loggedInUserDocId, //currently logged in user document id (jim's profile)
+  profileId, // the user that jim requests to follow
+  isFollowingProfile // true/false (am I currently following this person?)
+) => {
+  return firebase
+    .firestore()
+    .collection('users')
+    .doc(loggedInUserDocId)
+    .update({
+      following: isFollowingProfile
+        ? FieldValue.arrayRemove(profileId)
+        : FieldValue.arrayUnion(profileId),
+    });
+};
+
+const updateFollowedUserFollowers = async (
+  profileDocId,
+  userId,
+  isFollowingProfile
+) => {
+  return firebase
+    .firestore()
+    .collection('users')
+    .doc(profileDocId)
+    .update({
+      followers: isFollowingProfile
+        ? FieldValue.arrayRemove(userId)
+        : FieldValue.arrayUnion(userId),
+    });
+};
+
+export {
+  doesUsernameExist,
+  getUserByUserId,
+  getSuggestedProfiles,
+  updateLoggedInUserFollowing,
+  updateFollowedUserFollowers,
+};

@@ -5,8 +5,15 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { getSuggestedProfiles } from '../../services/firebase';
 import SuggestedProfile from './SuggestedProfile';
 
-const Suggestions = ({ userId, following }) => {
+const Suggestions = ({ userId, following, loggedInUserDocId }) => {
   const [profiles, setProfiles] = useState(null);
+
+  // go ahead and get the suggested profiles
+  // hint: use the firebase service (call using userId)
+  // getSuggestedProfiles
+  // call the async function ^^^^ within useEffect
+  // store it in state
+  // go ahead and render (wait on the profiles as in skeleton)
 
   useEffect(() => {
     const suggestedProfiles = async () => {
@@ -17,8 +24,6 @@ const Suggestions = ({ userId, following }) => {
     if (userId) {
       suggestedProfiles();
     }
-
-    console.log('profiles', profiles);
   }, [userId]);
 
   return !profiles ? (
@@ -32,10 +37,11 @@ const Suggestions = ({ userId, following }) => {
         {profiles.map((profile) => (
           <SuggestedProfile
             key={profile.docId}
-            userDocId={profile.docId}
+            profileDocId={profile.docId}
             username={profile.username}
             profileId={profile.userId}
-            useId={userId}
+            userId={userId}
+            loggedInUserDocId={loggedInUserDocId}
           />
         ))}
       </div>
@@ -48,4 +54,5 @@ export default Suggestions;
 Suggestions.propTypes = {
   userId: PropTypes.string,
   following: PropTypes.array,
+  loggedInUserDocId: PropTypes.string,
 };
