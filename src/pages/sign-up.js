@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import FirebaseContext from '../context/firebase';
 import * as ROUTES from '../constants/routes';
 import { doesUsernameExist } from '../services/firebase';
 
 const SignUp = () => {
-  const navigate = useNavigate();
+  const history = useHistory();
   const { firebase } = useContext(FirebaseContext);
 
   const [emailAddress, setEmailAddress] = useState('');
@@ -42,7 +42,7 @@ const SignUp = () => {
           dateCreated: Date.now(),
         });
 
-        navigate(ROUTES.DASHBOARD);
+        history.push(ROUTES.DASHBOARD);
       } catch (error) {
         setFullName('');
         setEmailAddress('');

@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import FirebaseContext from '../context/firebase';
 import * as ROUTES from '../constants/routes';
 
 const Login = () => {
-  const navigate = useNavigate();
+  const history = useHistory();
   const { firebase } = useContext(FirebaseContext);
 
   const [emailAddress, setEmailAddress] = useState('');
@@ -18,7 +18,7 @@ const Login = () => {
 
     try {
       await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
-      navigate(ROUTES.DASHBOARD);
+      history.push(ROUTES.DASHBOARD);
     } catch (error) {
       setEmailAddress('');
       setPassword('');
