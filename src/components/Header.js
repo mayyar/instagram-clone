@@ -50,12 +50,12 @@ const Header = () => {
                   title="Sign Out"
                   onClick={() => {
                     firebase.auth().signOut();
-                    history.pushState(ROUTES.LOGIN);
+                    history.push(ROUTES.LOGIN);
                   }}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter') {
                       firebase.auth().signOut();
-                      history.pushState(ROUTES.LOGIN);
+                      history.push(ROUTES.LOGIN);
                     }
                   }}
                 >
