@@ -73,7 +73,7 @@ const Login = () => {
               className={`bg-blue-medium text-white w-full rounded h-8 font-bold 
             ${isInValid && 'opacity-50'}`}
             >
-              Log In
+              Login
             </button>
           </form>
         </div>

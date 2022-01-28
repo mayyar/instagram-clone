@@ -9,7 +9,7 @@ const ProtectedRoute = ({ user, children, ...rest }) => {
       {...rest}
       render={({ location }) => {
         if (user) {
-          return children;
+          return React.cloneElement(children, { user });
         }
 
         if (!user) {
