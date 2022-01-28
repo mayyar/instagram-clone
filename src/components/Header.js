@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
 import FirebaseContext from '../context/firebase';
 import UserContext from '../context/user';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import useUser from '../hooks/use-user';
 
 const Header = () => {
+  const history = useHistory();
   const { user: loggedInUser } = useContext(UserContext);
   const { user } = useUser(loggedInUser?.uid);
   const { firebase } = useContext(FirebaseContext);
+
+  const addDefaultImageSrc = (ev) => {
+    ev.target.src = '/images/avatars/default.jpg';
+  };
 
   return (
     <header className="h-16 bg-white border-b border-gray-primary mb-8">
@@ -77,6 +82,7 @@ const Header = () => {
                 <div className="flex items-center cursor-pointer">
                   <Link to={`/p/${user?.username}`}>
                     <img
+                      onError={addDefaultImageSrc}
                       className="rounded-full h-8 w-8 flex"
                       src={`/images/avatars/${user?.username}.jpg`}
                       alt={`${user?.username} profile`}

@@ -5,6 +5,10 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { Link } from 'react-router-dom';
 
 const User = ({ username, fullName }) => {
+  const addDefaultImageSrc = (ev) => {
+    ev.target.src = '/images/avatars/default.jpg';
+  };
+
   return !username || !fullName ? (
     <Skeleton count={1} height={61} />
   ) : (
@@ -14,6 +18,7 @@ const User = ({ username, fullName }) => {
     >
       <div className="flex items-center justify-between col-span-1">
         <img
+          onError={addDefaultImageSrc}
           className="rounded-full w-16 flex mr-3"
           src={`/images/avatars/${username}.jpg`}
           alt=""

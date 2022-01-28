@@ -23,6 +23,10 @@ const Header = ({
   const [isFollowingProfile, setIsFollowingProfile] = useState(false);
   const activeBtnFollow = user?.username && user?.username !== profileUsername;
 
+  const addDefaultImageSrc = (ev) => {
+    ev.target.src = '/images/avatars/default.jpg';
+  };
+
   const handleToggleFollow = async () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile);
     setFollowerCount({
@@ -56,6 +60,7 @@ const Header = ({
       <div className="container flex justify-center">
         {profileUsername ? (
           <img
+            onError={addDefaultImageSrc}
             className="rounded-full h-40 w-40 flex"
             src={`/images/avatars/${profileUsername}.jpg`}
             alt={`${user.username} profile picture`}
