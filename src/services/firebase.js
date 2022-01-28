@@ -7,9 +7,20 @@ const doesUsernameExist = async (username) => {
     .where('username', '==', username)
     .get();
 
-  console.log(result);
-
   return result.docs.map((user) => user.data().length > 0);
+};
+
+const getUserByUsername = async (username) => {
+  const result = await firebase
+    .firestore()
+    .collection('users')
+    .where('username', '==', username)
+    .get();
+
+  return result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
 };
 
 // get user from the firestore where userId === userId (passed from the auth)
@@ -82,8 +93,6 @@ const getPhotos = async (userId, following) => {
     docId: photo.id,
   }));
 
-  console.log('userFollowedPhotos', userFollowedPhotos);
-
   const photosWithUserDetails = await Promise.all(
     userFollowedPhotos.map(async (photo) => {
       let userLikedPhoto = false;
@@ -101,11 +110,70 @@ const getPhotos = async (userId, following) => {
   return photosWithUserDetails;
 };
 
+const getUserPhotosByUsername = async (username) => {
+  const [user] = await getUserByUsername(username);
+  const result = await firebase
+    .firestore()
+    .collection('photos')
+    .where('userId', '==', user.userId)
+    .get();
+
+  return result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+};
+
+const isUserFollowingProfile = async (loggedInUsername, profileUserId) => {
+  const result = await firebase
+    .firestore()
+    .collection('users')
+    .where('username', '==', loggedInUsername)
+    .where('following', 'array-contains', profileUserId)
+    .get();
+
+  const [response = {}] = result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  return response.userId;
+};
+
+const toggleFollow = async (
+  isFollowingProfile,
+  activeUserDocId,
+  profileDocId,
+  profileUserId,
+  followingUserId
+) => {
+  // 1st param: jim's doc id
+  // 2nd param: raphael's user id
+  // 3rd param: is the user following this profile? e.g. does jim follow raphael? (true/false)
+  await updateLoggedInUserFollowing(
+    activeUserDocId,
+    profileUserId,
+    isFollowingProfile
+  );
+  // 1st param: raphael's doc id
+  // 2nd param: jim's user id
+  // 3rd param: is the user following this profile? e.g. does jim follow raphael? (true/false)
+  await updateFollowedUserFollowers(
+    profileDocId,
+    followingUserId,
+    isFollowingProfile
+  );
+};
+
 export {
   doesUsernameExist,
+  getUserByUsername,
   getUserByUserId,
   getSuggestedProfiles,
   updateLoggedInUserFollowing,
   updateFollowedUserFollowers,
   getPhotos,
+  getUserPhotosByUsername,
+  isUserFollowingProfile,
+  toggleFollow,
 };

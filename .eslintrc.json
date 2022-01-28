@@ -24,7 +24,7 @@
   ],
   "rules": {
     "no-unused-vars": "warn",
-    "no-undef": "off",
+    "no-undef": "error",
     "indent": [
       "error",
       2

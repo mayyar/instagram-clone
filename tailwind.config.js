@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
@@ -25,5 +26,8 @@ module.exports = {
         primary: '#ed4956',
       },
     },
+  },
+  variants: {
+    display: ['group-hover'],
   },
 };
