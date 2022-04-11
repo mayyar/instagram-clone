@@ -7,8 +7,8 @@ const Login = () => {
   const history = useHistory();
   const { firebase } = useContext(FirebaseContext);
 
-  const [emailAddress, setEmailAddress] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailAddress, setEmailAddress] = useState('jimlu@gmail.com');
+  const [password, setPassword] = useState('test123');
 
   const [error, setError] = useState('');
   const isInValid = emailAddress === '' || password === '';
